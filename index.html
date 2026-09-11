@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="HealthReach healthcare access student prototype"
+    >
+
+    <title>HealthReach</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="toast" class="toast"></div>
+
+<main class="app">
+
+    <!-- SPLASH -->
+    <section id="splashScreen" class="screen active splash-screen">
+
+        <div class="splash-content">
+
+            <div class="main-logo">+</div>
+
+            <h1>HealthReach</h1>
+
+            <p data-i18n="tagline">
+                Connecting People to Emergency Care Faster
+            </p>
+
+            <div class="loading-line">
+                <span></span>
+            </div>
+
+            <small>
+                Powered by <strong>Rass Digital</strong>
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOGIN -->
+    <section id="loginScreen" class="screen auth-screen">
+
+        <div class="auth-container">
+
+            <div class="auth-top">
+
+                <div class="small-logo">+</div>
+
+                <button
+                    class="language-button"
+                    onclick="showLanguagePanel()"
+                >
+                    🌐
+                    <span id="currentLanguageLabel">
+                        English
+                    </span>
+                </button>
+
+            </div>
+
+
+            <div class="auth-heading">
+
+                <span class="eyebrow" data-i18n="welcome">
+                    WELCOME
+                </span>
+
+                <h1 data-i18n="welcomeBack">
+                    Welcome Back
+                </h1>
+
+                <p data-i18n="signInSubtitle">
+                    Sign in to continue to HealthReach.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label data-i18n="email">
+                        Email
+                    </label>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="you@example.com"
+                        data-i18n-placeholder="emailPlaceholder"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="password">
+                        Password
+                    </label>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Enter password"
+                        data-i18n-placeholder="passwordPlaceholder"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                    data-i18n="signIn"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+
+            <button
+                class="text-button"
+                onclick="showScreen('forgotScreen')"
+                data-i18n="forgotPassword"
+            >
+                Forgot password?
+            </button>
+
+
+            <div class="divider">
+                <span></span>
+                <p data-i18n="or">OR</p>
+                <span></span>
+            </div>
+
+
+            <button
+                class="secondary-button"
+                onclick="showScreen('roleScreen')"
+                data-i18n="createAccount"
+            >
+                Create New Account
+            </button>
+
+
+            <p class="prototype-helper" data-i18n="prototypeLogin">
+                Prototype login only. Authentication is not connected to a real server.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- LANGUAGE PANEL -->
+    <section id="languageScreen" class="screen auth-screen">
+
+        <div class="auth-container">
+
+            <button
+                class="back-button"
+                onclick="showScreen('loginScreen')"
+            >
+                ←
+            </button>
+
+            <div class="auth-heading">
+
+                <span class="eyebrow">
+                    🌐
+                </span>
+
+                <h1 data-i18n="chooseLanguage">
+                    Choose Language
+                </h1>
+
+                <p data-i18n="languageSubtitle">
+                    HealthReach will remember your language.
+                </p>
+
+            </div>
+
+
+            <div class="language-list">
+
+                <button onclick="setLanguage('en')">
+                    <strong>English</strong>
+                    <span>English</span>
+                </button>
+
+                <button onclick="setLanguage('am')">
+                    <strong>አማርኛ</strong>
+                    <span>Amharic</span>
+                </button>
+
+                <button onclick="setLanguage('om')">
+                    <strong>Afaan Oromoo</strong>
+                    <span>Oromo</span>
+                </button>
+
+                <button onclick="setLanguage('ti')">
+                    <strong>ትግርኛ</strong>
+                    <span>Tigrinya</span>
+                </button>
+
+                <button onclick="setLanguage('aa')">
+                    <strong>Qafar Af</strong>
+                    <span>Afar</span>
+                </button>
+
+                <button onclick="setLanguage('so')">
+                    <strong>Soomaali</strong>
+                    <span>Somali</span>
+                </button>
+
+            </div>
+
+            <div class="demo-note" data-i18n="translationNote">
+                Translations are for prototype demonstration and should be reviewed by fluent speakers before production use.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FORGOT PASSWORD -->
+    <section id="forgotScreen" class="screen auth-screen">
+
+        <div class="auth-container">
+
+            <button
+                class="back-button"
+                onclick="showScreen('loginScreen')"
+            >
+                ←
+            </button>
+
+            <div class="small-logo">+</div>
+
+            <div class="auth-heading">
+
+                <span class="eyebrow" data-i18n="account">
+                    ACCOUNT
+                </span>
+
+                <h1 data-i18n="resetPassword">
+                    Reset Password
+                </h1>
+
+                <p data-i18n="resetSubtitle">
+                    Enter your email address.
+                </p>
+
+            </div>
+
+            <form id="forgotForm">
+
+                <div class="form-group">
+
+                    <label data-i18n="email">
+                        Email
+                    </label>
+
+                    <input
+                        id="forgotEmail"
+                        type="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                    data-i18n="sendReset"
+                >
+                    Send Reset Link
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROLE SELECTION -->
+    <section id="roleScreen" class="screen auth-screen">
+
+        <div class="auth-container">
+
+            <button
+                class="back-button"
+                onclick="showScreen('loginScreen')"
+            >
+                ←
+            </button>
+
+            <div class="small-logo">+</div>
+
+            <div class="auth-heading">
+
+                <span class="eyebrow" data-i18n="registration">
+                    REGISTRATION
+                </span>
+
+                <h1 data-i18n="chooseAccountType">
+                    Choose Account Type
+                </h1>
+
+                <p data-i18n="chooseRoleSubtitle">
+                    Select how you will use HealthReach.
+                </p>
+
+            </div>
+
+
+            <div class="role-grid">
+
+                <button
+                    class="role-card"
+                    onclick="openRegistration('patient')"
+                >
+
+                    <div class="role-icon">👤</div>
+
+                    <div class="role-copy">
+
+                        <strong data-i18n="patient">
+                            Patient
+                        </strong>
+
+                        <span data-i18n="patientRoleDescription">
+                            Find healthcare and manage your prototype health profile.
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </button>
+
+
+                <button
+                    class="role-card"
+                    onclick="openRegistration('driver')"
+                >
+
+                    <div class="role-icon">🚑</div>
+
+                    <div class="role-copy">
+
+                        <strong data-i18n="ambulanceDriver">
+                            Ambulance Driver
+                        </strong>
+
+                        <span data-i18n="driverRoleDescription">
+                            Receive and manage simulated emergency requests.
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </button>
+
+
+                <button
+                    class="role-card"
+                    onclick="openRegistration('hospital')"
+                >
+
+                    <div class="role-icon">🏥</div>
+
+                    <div class="role-copy">
+
+                        <strong data-i18n="hospital">
+                            Hospital
+                        </strong>
+
+                        <span data-i18n="hospitalRoleDescription">
+                            Manage hospital services and prototype capacity.
+                        </span>
+
+                    </div>
+
+                    <b>→</b>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PATIENT REGISTRATION -->
+    <section
+        id="patientRegistrationScreen"
+        class="screen auth-screen"
+    >
+
+        <div class="auth-container registration-container">
+
+            <button
+                class="back-button"
+                onclick="showScreen('roleScreen')"
+            >
+                ←
+            </button>
+
+            <div class="small-logo">+</div>
+
+            <div class="auth-heading">
+
+                <span class="eyebrow" data-i18n="patient">
+                    PATIENT
+                </span>
+
+                <h1 data-i18n="patientRegistration">
+                    Patient Registration
+                </h1>
+
+                <p data-i18n="patientRegistrationSubtitle">
+                    Create your HealthReach patient profile.
+                </p>
+
+            </div>
+
+
+            <form id="patientForm">
+
+                <h3 class="form-section-title" data-i18n="accountInformation">
+                    Account Information
+                </h3>
+
+
+                <div class="form-group">
+                    <label data-i18n="fullName">Full Name</label>
+                    <input id="patientName" type="text" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label data-i18n="email">Email</label>
+                    <input id="patientEmail" type="email" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label data-i18n="phone">Phone Number</label>
+                    <input id="patientPhone" type="tel" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label data-i18n="password">Password</label>
+                    <input
+                        id="patientPassword"
+                        type="password"
+                        minlength="4"
+                        required
+                    >
+                </div>
+
+
+                <h3 class="form-section-title" data-i18n="personalInformation">
+                    Personal Information
+                </h3>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="dateOfBirth">
+                        Date of Birth
+                    </label>
+
+                    <input id="patientDob" type="date" required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="gender">
+                        Gender
+                    </label>
+
+                    <select id="patientGender" required>
+
+                        <option value="" data-i18n="selectOption">
+                            Select
+                        </option>
+
+                        <option value="Male" data-i18n="male">
+                            Male
+                        </option>
+
+                        <option value="Female" data-i18n="female">
+                            Female
+                        </option>
+
+                        <option value="Other" data-i18n="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="city">
+                        City
+                    </label>
+
+                    <select id="patientCity" required>
+
+                        <option value="">
+                            Select city
+                        </option>
+
+                        <option>Addis Ababa</option>
+                        <option>Dessie</option>
+                        <option>Bahir Dar</option>
+                        <option>Hawassa</option>
+                        <option>Adama</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="address">
+                        Address
+                    </label>
+
+                    <input
+                        id="patientAddress"
+                        type="text"
+                        required
+                    >
+
+                </div>
+
+
+                <h3 class="form-section-title" data-i18n="healthInformation">
+                    Health Information
+                </h3>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="emergencyContact">
+                        Emergency Contact
+                    </label>
+
+                    <input
+                        id="patientEmergencyContact"
+                        type="tel"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="bloodType">
+                        Blood Type
+                    </label>
+
+                    <select id="patientBloodType">
+
+                        <option value="Unknown">
+                            Unknown
+                        </option>
+
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="allergies">
+                        Allergies
+                    </label>
+
+                    <textarea
+                        id="patientAllergies"
+                        data-i18n-placeholder="optional"
+                        placeholder="Optional"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label data-i18n="medicalInformation">
+                        Additional Medical Information
+                    </label>
+
+                    <textarea
+                        id="patientMedicalInfo"
+                        data-i18n-placeholder="optional"
+                        placeholder="Optional"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="demo-note" data-i18n="prototypeNotice">
+                    This is a student prototype and is not connected to a real healthcare system.
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                    data-i18n="createPatientAccount"
+                >
+                    Create Patient Account
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- DRIVER REGISTRATION -->
+    <section
+        id="driverRegistrationScreen"
+        class="screen auth-screen"
+    >
+
+        <div class="auth-container registration-container">
+
+            <button
+                class="back-button"
+                onclick="showScreen('roleScreen')"
+            >
+                ←
+            </button>
+
+            <div class="small-logo">+</div>
+
+            <div class="auth-heading">
+
+                <span class="eyebrow" data-i18n="ambulanceDriver">
+                    AMBULANCE DRIVER
+                </span>
+
+                <h1 data-i18n="driverRegistration">
+                    Driver Registration
+                </h1>
+
+                <p data-i18n="driverRegistrationSubtitle">
+                    Create a demonstration ambulance driver profile.
+                </p>
+
+            </div>
+
+
+            <form id="driverForm">
+
+                <div class="form-group">
+                    <label data-i18n="fullName">Full Name</label>
+                    <input id="driverName" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="email">Email</label>
+                    <input id="driverEmail" type="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="phone">Phone</label>
+                    <input id="driverPhone" type="tel" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="password">Password</label>
+                    <input id="driverPassword" type="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="licenseNumber">License Number</label>
+                    <input id="driverLicense" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="organization">Ambulance Organization</label>
+                    <input id="driverOrganization" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="vehicleType">Vehicle Type</label>
+                    <input id="driverVehicle" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="plateNumber">Plate Number</label>
+                    <input id="driverPlate" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="experience">Years of Experience</label>
+                    <input
+                        id="driverExperience"
+                        type="number"
+                        min="0"
+                        value="0"
+                    >
+                </div>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                    data-i18n="createDriverAccount"
+                >
+                    Create Driver Account
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOSPITAL REGISTRATION -->
+    <section
+        id="hospitalRegistrationScreen"
+        class="screen auth-screen"
+    >
+
+        <div class="auth-container registration-container">
+
+            <button
+                class="back-button"
+                onclick="showScreen('roleScreen')"
+            >
+                ←
+            </button>
+
+            <div class="small-logo">+</div>
+
+            <div class="auth-heading">
+
+                <span class="eyebrow" data-i18n="hospital">
+                    HOSPITAL
+                </span>
+
+                <h1 data-i18n="hospitalRegistration">
+                    Hospital Registration
+                </h1>
+
+                <p data-i18n="hospitalRegistrationSubtitle">
+                    Create a demonstration hospital account.
+                </p>
+
+            </div>
+
+
+            <form id="hospitalForm">
+
+                <div class="form-group">
+                    <label data-i18n="hospitalName">Hospital Name</label>
+                    <input id="hospitalName" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="registrationNumber">Registration Number</label>
+                    <input id="hospitalRegistration" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="email">Email</label>
+                    <input id="hospitalEmail" type="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="password">Password</label>
+                    <input id="hospitalPassword" type="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="phone">Phone</label>
+                    <input id="hospitalPhone" type="tel" required>
+                </div>
+
+                <div class="form-group">
+
+                    <label data-i18n="city">City</label>
+
+                    <select id="hospitalCity" required>
+
+                        <option value="">
+                            Select city
+                        </option>
+
+                        <option>Addis Ababa</option>
+                        <option>Dessie</option>
+                        <option>Bahir Dar</option>
+                        <option>Hawassa</option>
+                        <option>Adama</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="address">Address</label>
+                    <input id="hospitalAddress" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="administrator">Administrator Name</label>
+                    <input id="hospitalAdmin" type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="availableBeds">Available Beds</label>
+                    <input
+                        id="hospitalBeds"
+                        type="number"
+                        min="0"
+                        value="20"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="departments">Departments</label>
+                    <textarea id="hospitalDepartments"></textarea>
+                </div>
+
+                <label class="checkbox-card">
+
+                    <input
+                        id="hospitalEmergency"
+                        type="checkbox"
+                    >
+
+                    <span data-i18n="providesEmergency">
+                        Hospital provides emergency services
+                    </span>
+
+                </label>
+
+                <button
+                    class="primary-button"
+                    type="submit"
+                    data-i18n="createHospitalAccount"
+                >
+                    Create Hospital Account
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- PATIENT HOME -->
+    <section id="homeScreen" class="screen main-screen">
+
+        <header class="top-header">
+
+            <div>
+
+                <span class="header-small" data-i18n="welcomeBackSmall">
+                    Welcome back
+                </span>
+
+                <h2 class="patient-name">
+                    Patient
+                </h2>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="header-button"
+                    onclick="showLanguagePanelFromApp()"
+                >
+                    🌐
+                </button>
+
+                <button
+                    class="header-button"
+                    onclick="showScreen('notificationsScreen')"
+                >
+                    🔔
+                    <span class="notification-dot"></span>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="city-card">
+
+            <div class="city-icon">
+                📍
+            </div>
+
+            <div>
+
+                <small data-i18n="currentArea">
+                    Current search area
+                </small>
+
+                <strong id="homeCity">
+                    Ethiopia
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                id="homeSearch"
+                type="text"
+                data-i18n-placeholder="searchHealthcare"
+                placeholder="Search healthcare services..."
+            >
+
+            <button
+                onclick="searchFromHome()"
+                data-i18n="search"
+            >
+                Search
+            </button>
+
+        </div>
+
+
+        <article class="emergency-card">
+
+            <div class="emergency-top">
+
+                <span class="emergency-label" data-i18n="emergency">
+                    EMERGENCY
+                </span>
+
+                <span class="emergency-symbol">
+                    🚑
+                </span>
+
+            </div>
+
+            <h1 data-i18n="needUrgentCare">
+                Need urgent healthcare assistance?
+            </h1>
+
+            <p data-i18n="emergencyDescription">
+                Start a simulated emergency request and find nearby demonstration healthcare services.
+            </p>
+
+            <button
+                class="emergency-button"
+                onclick="showScreen('emergencyScreen')"
+                data-i18n="requestEmergency"
+            >
+                Request Emergency Assistance
+            </button>
+
+            <small data-i18n="emergencyPrototypeWarning">
+                Prototype only — does not contact real emergency services.
+            </small>
+
+        </article>
+
+
+        <div class="section-title">
+
+            <div>
+                <small data-i18n="quickAccess">QUICK ACCESS</small>
+                <h2 data-i18n="healthcareServices">Healthcare Services</h2>
+            </div>
+
+            <button
+                onclick="showScreen('nearbyScreen')"
+                data-i18n="seeAll"
+            >
+                See all
+            </button>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <button
+                class="service-card"
+                onclick="openService('Hospital')"
+            >
+                <span>🏥</span>
+                <strong data-i18n="hospitals">Hospitals</strong>
+                <small data-i18n="hospitalCare">Emergency & general care</small>
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="openService('Clinic')"
+            >
+                <span>🩺</span>
+                <strong data-i18n="clinics">Clinics</strong>
+                <small data-i18n="clinicCare">Nearby medical clinics</small>
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="openService('Pharmacy')"
+            >
+                <span>💊</span>
+                <strong data-i18n="pharmacies">Pharmacies</strong>
+                <small data-i18n="medicineAccess">Medicine access</small>
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="openService('Blood Bank')"
+            >
+                <span>🩸</span>
+                <strong data-i18n="bloodBanks">Blood Banks</strong>
+                <small data-i18n="bloodServices">Blood services</small>
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="openService('Ambulance')"
+            >
+                <span>🚑</span>
+                <strong data-i18n="ambulance">Ambulance</strong>
+                <small data-i18n="emergencyTransport">Emergency transport</small>
+            </button>
+
+
+            <button
+                class="service-card"
+                onclick="openService('Doctor')"
+            >
+                <span>👨‍⚕️</span>
+                <strong data-i18n="doctors">Doctors</strong>
+                <small data-i18n="medicalProfessionals">Medical professionals</small>
+            </button>
+
+        </div>
+
+
+        <div class="section-title">
+
+            <div>
+                <small data-i18n="nearby">NEARBY</small>
+                <h2 data-i18n="recommendedCare">Recommended Care</h2>
+            </div>
+
+            <button
+                onclick="showScreen('nearbyScreen')"
+                data-i18n="viewAll"
+            >
+                View all
+            </button>
+
+        </div>
+
+
+        <div id="homeFacilityList"></div>
+
+
+        <div class="demo-note" data-i18n="facilityDemoWarning">
+            All facility names, distances, bed information and availability shown in HealthReach are demonstration data.
+        </div>
+
+    </section>
+
+
+    <!-- NEARBY -->
+    <section id="nearbyScreen" class="screen main-screen">
+
+        <div class="page-heading">
+
+            <span data-i18n="explore">EXPLORE</span>
+
+            <h1 data-i18n="nearbyHealthcare">
+                Nearby Healthcare
+            </h1>
+
+            <p data-i18n="nearbySubtitle">
+                Browse demonstration healthcare facilities.
+            </p>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <span>⌕</span>
+
+            <input
+                id="facilitySearch"
+                type="text"
+                data-i18n-placeholder="searchFacilities"
+                placeholder="Search facilities..."
+                oninput="renderFacilities()"
+            >
+
+        </div>
+
+
+        <div class="filter-scroll">
+
+            <button
+                class="filter-chip active"
+                data-filter="All"
+                onclick="setFilter('All', this)"
+                data-i18n="all"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-chip"
+                data-filter="Hospital"
+                onclick="setFilter('Hospital', this)"
+                data-i18n="hospitals"
+            >
+                Hospitals
+            </button>
+
+            <button
+                class="filter-chip"
+                data-filter="Clinic"
+                onclick="setFilter('Clinic', this)"
+                data-i18n="clinics"
+            >
+                Clinics
+            </button>
+
+            <button
+                class="filter-chip"
+                data-filter="Pharmacy"
+                onclick="setFilter('Pharmacy', this)"
+                data-i18n="pharmacies"
+            >
+                Pharmacies
+            </button>
+
+            <button
+                class="filter-chip"
+                data-filter="Blood Bank"
+                onclick="setFilter('Blood Bank', this)"
+                data-i18n="bloodBanks"
+            >
+                Blood Banks
+            </button>
+
+            <button
+                class="filter-chip"
+                data-filter="Ambulance"
+                onclick="setFilter('Ambulance', this)"
+                data-i18n="ambulance"
+            >
+                Ambulance
+            </button>
+
+            <button
+                class="filter-chip"
+                data-filter="Doctor"
+                onclick="setFilter('Doctor', this)"
+                data-i18n="doctors"
+            >
+                Doctors
+            </button>
+
+        </div>
+
+
+        <div id="facilityList"></div>
+
+    </section>
+
+
+    <!-- FACILITY DETAILS -->
+    <section
+        id="facilityDetailsScreen"
+        class="screen main-screen"
+    >
+
+        <div class="page-top">
+
+            <button
+                class="back-button"
+                onclick="showScreen('nearbyScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+                <small data-i18n="facility">FACILITY</small>
+                <h2 data-i18n="facilityDetails">Facility Details</h2>
+            </div>
+
+        </div>
+
+        <div id="facilityDetails"></div>
+
+    </section>
+
+
+    <!-- EMERGENCY -->
+    <section id="emergencyScreen" class="screen main-screen">
+
+        <div class="page-top">
+
+            <button
+                class="back-button"
+                onclick="showScreen('homeScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+                <small>HEALTHREACH</small>
+                <h2 data-i18n="emergencyAssistance">
+                    Emergency Assistance
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="warning-card">
+
+            <strong data-i18n="important">
+                Important
+            </strong>
+
+            <p data-i18n="realEmergencyWarning">
+                HealthReach does not contact real ambulances, hospitals or emergency responders.
+            </p>
+
+        </div>
+
+
+        <div
+            id="emergencyStart"
+            class="emergency-request-card"
+        >
+
+            <div class="large-round-icon">
+                🚑
+            </div>
+
+            <h1 data-i18n="requestAssistance">
+                Request Assistance
+            </h1>
+
+            <p data-i18n="requestDemoDescription">
+                Start a demonstration emergency request.
+            </p>
+
+
+            <div class="form-group">
+
+                <label data-i18n="requestType">
+                    Request Type
+                </label>
+
+                <select id="emergencyType">
+
+                    <option data-i18n="generalEmergency">
+                        General Emergency Assistance
+                    </option>
+
+                    <option data-i18n="ambulanceRequest">
+                        Ambulance Request
+                    </option>
+
+                    <option data-i18n="findEmergencyHospital">
+                        Find Emergency Hospital
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="emergency-button"
+                onclick="startEmergencyRequest()"
+                data-i18n="startDemoRequest"
+            >
+                Start Demo Request
+            </button>
+
+        </div>
+
+
+        <div
+            id="emergencyProgress"
+            class="emergency-progress hidden"
+        >
+
+            <div class="pulse-icon">
+                🚑
+            </div>
+
+            <h2 data-i18n="searchingServices">
+                Searching Nearby Services
+            </h2>
+
+            <p data-i18n="processingRequest">
+                Processing demonstration request...
+            </p>
+
+        </div>
+
+
+        <div
+            id="emergencyResult"
+            class="hidden"
+        >
+
+            <div class="success-card">
+
+                <span>✓</span>
+
+                <div>
+
+                    <strong data-i18n="assistanceFound">
+                        Demo Assistance Found
+                    </strong>
+
+                    <p data-i18n="simulatedMatch">
+                        A simulated ambulance and hospital were matched.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <span class="status-badge" data-i18n="demoActive">
+                    DEMO ACTIVE
+                </span>
+
+                <h2>
+                    HealthReach Demo Ambulance
+                </h2>
+
+                <p data-i18n="estimatedArrival">
+                    Simulated estimated arrival
+                </p>
+
+                <strong class="eta">
+                    8 min
+                </strong>
+
+
+                <div class="demo-map">
+
+                    <div class="road road-one"></div>
+                    <div class="road road-two"></div>
+
+                    <span class="patient-pin">👤</span>
+                    <span class="ambulance-pin">🚑</span>
+
+                </div>
+
+
+                <div class="status-list">
+
+                    <div class="status-item completed">
+                        <span>✓</span>
+                        <p data-i18n="requestReceived">Request received</p>
+                    </div>
+
+                    <div class="status-item completed">
+                        <span>✓</span>
+                        <p data-i18n="driverAssigned">Driver assigned</p>
+                    </div>
+
+                    <div class="status-item">
+                        <span>3</span>
+                        <p data-i18n="ambulanceArriving">Demo ambulance arriving</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="secondary-button"
+                onclick="cancelEmergencyRequest()"
+                data-i18n="endDemoRequest"
+            >
+                End Demo Request
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPOINTMENTS -->
+    <section
+        id="appointmentsScreen"
+        class="screen main-screen"
+    >
+
+        <div class="page-heading">
+
+            <span data-i18n="patient">PATIENT</span>
+
+            <h1 data-i18n="appointments">
+                Appointments
+            </h1>
+
+            <p data-i18n="appointmentsSubtitle">
+                Manage demonstration healthcare appointments.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            onclick="toggleAppointmentForm()"
+            data-i18n="bookAppointment"
+        >
+            + Book Demo Appointment
+        </button>
+
+
+        <form
+            id="appointmentForm"
+            class="appointment-form hidden"
+        >
+
+            <div class="form-group">
+
+                <label data-i18n="facility">
+                    Facility
+                </label>
+
+                <select id="appointmentFacility">
+
+                    <option>
+                        HealthReach Demo Hospital
+                    </option>
+
+                    <option>
+                        Sunrise Demo Clinic
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label data-i18n="department">
+                    Department
+                </label>
+
+                <select id="appointmentDepartment">
+
+                    <option>General Medicine</option>
+                    <option>Pediatrics</option>
+                    <option>Dental</option>
+                    <option>Dermatology</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label data-i18n="date">
+                    Date
+                </label>
+
+                <input
+                    id="appointmentDate"
+                    type="date"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label data-i18n="time">
+                    Time
+                </label>
+
+                <input
+                    id="appointmentTime"
+                    type="time"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="primary-button"
+                type="submit"
+                data-i18n="saveAppointment"
+            >
+                Save Appointment
+            </button>
+
+        </form>
+
+
+        <div id="appointmentsList"></div>
+
+    </section>
+
+
+    <!-- HEALTH -->
+    <section id="healthScreen" class="screen main-screen">
+
+        <div class="page-heading">
+
+            <span data-i18n="myHealth">
+                MY HEALTH
+            </span>
+
+            <h1 data-i18n="healthProfile">
+                Health Profile
+            </h1>
+
+            <p data-i18n="healthProfileSubtitle">
+                Your saved prototype health information.
+            </p>
+
+        </div>
+
+
+        <div class="profile-summary-card">
+
+            <div class="profile-health-icon">
+                ♥
+            </div>
+
+            <div>
+                <small data-i18n="patientProfile">PATIENT PROFILE</small>
+                <h2 class="patient-name">Patient</h2>
+            </div>
+
+        </div>
+
+
+        <div class="health-grid">
+
+            <div class="health-card">
+
+                <span>🩸</span>
+
+                <small data-i18n="bloodType">
+                    Blood Type
+                </small>
+
+                <strong id="healthBlood">
+                    Unknown
+                </strong>
+
+            </div>
+
+
+            <div class="health-card">
+
+                <span>⚠️</span>
+
+                <small data-i18n="allergies">
+                    Allergies
+                </small>
+
+                <strong id="healthAllergies">
+                    None provided
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="information-card">
+
+            <span>📋</span>
+
+            <div>
+
+                <small data-i18n="medicalInformation">
+                    MEDICAL INFORMATION
+                </small>
+
+                <p id="healthMedical">
+                    No information provided.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="information-card">
+
+            <span>📞</span>
+
+            <div>
+
+                <small data-i18n="emergencyContact">
+                    EMERGENCY CONTACT
+                </small>
+
+                <p id="healthEmergencyContact">
+                    Not provided
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+    <section
+        id="notificationsScreen"
+        class="screen main-screen"
+    >
+
+        <div class="page-top">
+
+            <button
+                class="back-button"
+                onclick="showScreen('homeScreen')"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <small data-i18n="updates">
+                    UPDATES
+                </small>
+
+                <h2 data-i18n="notifications">
+                    Notifications
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div id="notificationsList"></div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+    <section id="profileScreen" class="screen main-screen">
+
+        <div class="page-heading">
+
+            <span data-i18n="account">
+                ACCOUNT
+            </span>
+
+            <h1 data-i18n="profile">
+                Profile
+            </h1>
+
+            <p data-i18n="profileSubtitle">
+                Manage your HealthReach prototype account.
+            </p>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <div>
+
+                <h2 class="patient-name">
+                    Patient
+                </h2>
+
+                <p id="profileEmail">
+                    Patient account
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-information">
+
+            <div>
+                <span data-i18n="phone">Phone</span>
+                <strong id="profilePhone">Not provided</strong>
+            </div>
+
+            <div>
+                <span data-i18n="city">City</span>
+                <strong id="profileCity">Not provided</strong>
+            </div>
+
+            <div>
+                <span data-i18n="address">Address</span>
+                <strong id="profileAddress">Not provided</strong>
+            </div>
+
+            <div>
+                <span data-i18n="dateOfBirth">Date of Birth</span>
+                <strong id="profileDob">Not provided</strong>
+            </div>
+
+        </div>
+
+
+        <button
+            class="menu-card"
+            onclick="showScreen('healthScreen')"
+        >
+
+            <span>❤️</span>
+
+            <div>
+                <strong data-i18n="healthInformation">
+                    Health Information
+                </strong>
+
+                <small data-i18n="viewHealthProfile">
+                    View your health profile
+                </small>
+            </div>
+
+            <b>→</b>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="showScreen('appointmentsScreen')"
+        >
+
+            <span>📅</span>
+
+            <div>
+                <strong data-i18n="appointments">
+                    Appointments
+                </strong>
+
+                <small data-i18n="manageAppointments">
+                    Manage demo appointments
+                </small>
+            </div>
+
+            <b>→</b>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="showLanguagePanelFromApp()"
+        >
+
+            <span>🌐</span>
+
+            <div>
+                <strong data-i18n="language">
+                    Language
+                </strong>
+
+                <small id="profileLanguage">
+                    English
+                </small>
+            </div>
+
+            <b>→</b>
+
+        </button>
+
+
+        <button
+            class="menu-card"
+            onclick="showAbout()"
+        >
+
+            <span>ⓘ</span>
+
+            <div>
+                <strong data-i18n="aboutHealthReach">
+                    About HealthReach
+                </strong>
+
+                <small data-i18n="studentProject">
+                    Student healthcare technology project
+                </small>
+            </div>
+
+            <b>→</b>
+
+        </button>
+
+
+        <button
+            class="menu-card logout-card"
+            onclick="logout()"
+        >
+
+            <span>↪</span>
+
+            <div>
+
+                <strong data-i18n="logout">
+                    Log Out
+                </strong>
+
+                <small data-i18n="returnToLogin">
+                    Return to sign in
+                </small>
+
+            </div>
+
+            <b>→</b>
+
+        </button>
+
+    </section>
+
+
+    <!-- DRIVER DASHBOARD -->
+    <section
+        id="driverDashboardScreen"
+        class="screen main-screen"
+    >
+
+        <header class="top-header">
+
+            <div>
+
+                <span class="header-small" data-i18n="ambulanceDriver">
+                    Ambulance Driver
+                </span>
+
+                <h2 id="driverDashboardName">
+                    Driver
+                </h2>
+
+            </div>
+
+            <button
+                class="header-button"
+                onclick="logout()"
+            >
+                ↪
+            </button>
+
+        </header>
+
+
+        <div class="availability-card">
+
+            <div>
+                <small data-i18n="driverStatus">DRIVER STATUS</small>
+                <h2 id="driverStatusText" data-i18n="available">Available</h2>
+            </div>
+
+            <label class="switch">
+
+                <input
+                    id="driverAvailability"
+                    type="checkbox"
+                    checked
+                    onchange="updateDriverAvailability()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <span>3</span>
+                <small data-i18n="requests">Requests</small>
+            </div>
+
+            <div class="stat-card">
+                <span>2</span>
+                <small data-i18n="completed">Completed</small>
+            </div>
+
+            <div class="stat-card">
+                <span>8m</span>
+                <small data-i18n="averageEta">Average ETA</small>
+            </div>
+
+        </div>
+
+
+        <div class="section-title">
+
+            <div>
+                <small data-i18n="requests">REQUESTS</small>
+                <h2 data-i18n="emergencyRequests">Emergency Requests</h2>
+            </div>
+
+        </div>
+
+
+        <div id="driverRequests"></div>
+
+    </section>
+
+
+    <!-- HOSPITAL DASHBOARD -->
+    <section
+        id="hospitalDashboardScreen"
+        class="screen main-screen"
+    >
+
+        <header class="top-header">
+
+            <div>
+
+                <span class="header-small" data-i18n="hospitalDashboard">
+                    Hospital Dashboard
+                </span>
+
+                <h2 id="hospitalDashboardName">
+                    Hospital
+                </h2>
+
+            </div>
+
+            <button
+                class="header-button"
+                onclick="logout()"
+            >
+                ↪
+            </button>
+
+        </header>
+
+
+        <div class="availability-card">
+
+            <div>
+                <small data-i18n="facilityStatus">FACILITY STATUS</small>
+                <h2 data-i18n="emergencyService">Emergency Service</h2>
+            </div>
+
+            <label class="switch">
+
+                <input
+                    id="hospitalEmergencyToggle"
+                    type="checkbox"
+                    checked
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <span id="hospitalBedStat">
+                    20
+                </span>
+
+                <small data-i18n="availableBeds">
+                    Available Beds
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>4</span>
+
+                <small data-i18n="departments">
+                    Departments
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>2</span>
+
+                <small data-i18n="requests">
+                    Requests
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3 data-i18n="bedAvailability">
+                Bed Availability
+            </h3>
+
+            <p data-i18n="updateBedCount">
+                Update demonstration bed count.
+            </p>
+
+
+            <div class="counter">
+
+                <button onclick="changeBeds(-1)">
+                    −
+                </button>
+
+                <strong id="hospitalBedsDisplay">
+                    20
+                </strong>
+
+                <button onclick="changeBeds(1)">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav id="bottomNav" class="bottom-nav">
+
+        <button
+            class="nav-item active"
+            data-screen="homeScreen"
+            onclick="showScreen('homeScreen')"
+        >
+            <span>⌂</span>
+            <small data-i18n="home">Home</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-screen="nearbyScreen"
+            onclick="showScreen('nearbyScreen')"
+        >
+            <span>📍</span>
+            <small data-i18n="nearbyNav">Nearby</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-screen="appointmentsScreen"
+            onclick="showScreen('appointmentsScreen')"
+        >
+            <span>📅</span>
+            <small data-i18n="visits">Visits</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-screen="healthScreen"
+            onclick="showScreen('healthScreen')"
+        >
+            <span>♡</span>
+            <small data-i18n="health">Health</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-screen="profileScreen"
+            onclick="showScreen('profileScreen')"
+        >
+            <span>♙</span>
+            <small data-i18n="profile">Profile</small>
+        </button>
+
+    </nav>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
