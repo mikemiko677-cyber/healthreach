@@ -1,5 +1,9 @@
 # 🏥 HealthReach
 
+## 🚀 Live Demo
+
+[Open HealthReach Prototype](https://mikemiko677-cyber.github.io/healthreach/)
+
 ### Connecting People to Emergency Care Faster
 
 HealthReach is a mobile-first healthcare access and emergency assistance prototype designed to connect patients, ambulance drivers, and hospitals through one digital platform.
